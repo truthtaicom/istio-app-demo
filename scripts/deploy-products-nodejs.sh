@@ -12,20 +12,32 @@ function _out() {
 function setup() {
 
   kubectl delete all -l app=products --ignore-not-found
+
+  cd ${root_folder}/services
+  kubectl apply -f services.yaml
   
-  _out Build Docker Image
+  _out Build v1 Docker Image
   cd ${root_folder}/services/products
   docker build -f Dockerfile -t  products:1 .
 
-  _out Deploy to Docker Desktop
+  _out Deploy v1 to Docker Desktop
   cd ${root_folder}/services/products/deployment
+  kubectl apply -f deployment.yaml
+  kubectl apply -f istio.yaml
+
+  _out Build v2 Docker Image
+  cd ${root_folder}/services/products_v2
+  docker build -f Dockerfile -t  products:2 .
+
+  _out Deploy v2 to Docker Desktop
+  cd ${root_folder}/services/products_v2/deployment
   kubectl apply -f deployment.yaml
   kubectl apply -f istio.yaml
   
   _out Done deploying products
   _out Wait until the pod has been started: "kubectl get pod --watch | grep products"
   nodeport=$(kubectl get svc products --ignore-not-found --output 'jsonpath={.spec.ports[*].nodePort}')
-  _out Sample API call: curl http://127.0.0.1:${nodeport}/api/v1/products
+  _out Sample API call: curl http://127.0.0.1:${nodeport}/api/products
 }
 
 _out Deploying products

@@ -14,10 +14,10 @@
 # apiVersion: networking.istio.io/v1alpha3
 # kind: DestinationRule
 # metadata:
-#   name: products-destination-rule-v1
+#   name: products-destination-rule-v2
 # spec:
 #   host: products
 #   subsets:
-#   - name: v1
+#   - name: v2
 #     labels:
-#       version: v1
+#       version: v2
