@@ -1,5 +1,7 @@
 {
-  "data": [],
+  "data": [{
+    "name": "SP v1"
+  }],
   "meta": {
     "version": "v1"
   }

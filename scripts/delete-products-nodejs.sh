@@ -19,11 +19,11 @@ function setup() {
   cd ${root_folder}/services
   kubectl delete -f services.yaml --ignore-not-found
 
-  cd ${root_folder}/services/products/deployment
+  cd ${root_folder}/services/api/products/deployment
   kubectl delete -f deployment.yaml --ignore-not-found
   kubectl delete -f istio.yaml --ignore-not-found
 
-  cd ${root_folder}/services/products_v2/deployment
+  cd ${root_folder}/services/api/products_v2/deployment
   kubectl delete -f deployment.yaml --ignore-not-found
   kubectl delete -f istio.yaml --ignore-not-found
 

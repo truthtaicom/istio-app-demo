@@ -3,6 +3,7 @@ require('dotenv').config()
 const fs = require('fs').promises;
 const path = require('path')
 const express = require('express');
+const cors = require('cors')
 
 // Constants
 const PORT = process.env.PORT || 3000;
@@ -12,10 +13,12 @@ async function main() {
   app.use(express.urlencoded({extended: true}));
   app.use(express.json());
 
+  app.use(cors())
+
   app.get('/', async (req, res) => {
     try {
       const data = await fs.readFile(path.join(__dirname, '..','/mocks/products.json'), 'utf8')
-      res.status(200).json(data)
+      res.status(200).json(JSON.parse(data))
     } catch (err) {
       res.status(500).json(err)
     }

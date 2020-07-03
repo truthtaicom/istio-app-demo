@@ -17,20 +17,20 @@ function setup() {
   kubectl apply -f services.yaml
   
   _out Build v1 Docker Image
-  cd ${root_folder}/services/products
+  cd ${root_folder}/services/api/products
   docker build -f Dockerfile -t  products:1 .
 
   _out Deploy v1 to Docker Desktop
-  cd ${root_folder}/services/products/deployment
+  cd ${root_folder}/services/api/products/deployment
   kubectl apply -f deployment.yaml
   kubectl apply -f istio.yaml
 
   _out Build v2 Docker Image
-  cd ${root_folder}/services/products_v2
+  cd ${root_folder}/services/api/products_v2
   docker build -f Dockerfile -t  products:2 .
 
   _out Deploy v2 to Docker Desktop
-  cd ${root_folder}/services/products_v2/deployment
+  cd ${root_folder}/services/api/products_v2/deployment
   kubectl apply -f deployment.yaml
   kubectl apply -f istio.yaml
   

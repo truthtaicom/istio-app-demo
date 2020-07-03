@@ -11,8 +11,8 @@ function _out() {
 
 function setup() {
   
-  _out Installing Kiali
-  istioctl install --set values.kiali.enabled=true
+  _out Installing
+  istioctl install --set values.global.istioNamespace=istio-system --set values.gateways.istio-ingressgateway.enabled=true --set values.gateways.istio-egressgateway.enabled=true --set values.kiali.enabled=true --set addonComponents.grafana.enabled=true
 }
 
 _out Pre-Installing some application
