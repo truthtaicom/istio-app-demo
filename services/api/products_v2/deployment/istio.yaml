@@ -9,7 +9,7 @@
 #   - route:
 #     - destination:
 #         host: products
-#         subset: v1
+#         subset: v2
 # ---
 # apiVersion: networking.istio.io/v1alpha3
 # kind: DestinationRule

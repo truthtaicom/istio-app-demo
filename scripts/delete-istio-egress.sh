@@ -12,7 +12,7 @@ function setup() {
   _out Deleting Istio Egress definitions
   
   cd ${root_folder}/istio
-  kubectl delete -f istio-egress-gateway.yaml --ignore-not-found --enable-validation=false
+  kubectl delete -f istio-egress-gateway.yaml --ignore-not-found
   
   _out Done deleting Istio Egress definitions
 }

@@ -9,14 +9,20 @@ function _out() {
 }
 
 function setup() {
-  _out Deploying ext httpbin
+  _out ⚡️ Deleting All
   
   cd ${root_folder}/scripts
-  ./delete-istio-ingress.sh
-  ./delete-istio-egress.sh
-  ./delete-products-nodejs.sh
+  ./delete-istio-gateway.sh
+  ./delete-istio-tools.sh
+
+  ./delete-ext-fixer.sh
   ./delete-ext-httpbin.sh
-  ./delete-kiali.sh
+  ./delete-ext-mongo.sh
+
+  ./delete-products-mongo.sh
+  ./delete-currency.sh
+
+  _out 🚧 Done Deleting All
 }
 
 setup

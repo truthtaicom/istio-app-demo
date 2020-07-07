@@ -1,0 +1,70 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: fixer-se
+spec:
+  hosts:
+  - data.fixer.io
+  ports:
+  - number: 80
+    name: http-port
+    protocol: HTTP
+  - number: 443
+    name: https
+    protocol: HTTPS
+  resolution: DNS
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: fixer-vs
+spec:
+  hosts:
+    - data.fixer.io
+  http:
+    - route:
+        - destination:
+            host: data.fixer.io
+          weight: 100
+# ---
+# apiVersion: networking.istio.io/v1alpha3
+# kind: DestinationRule
+# metadata:
+#   name: egressgateway-for-fixer
+# spec:
+#   host: istio-egressgateway.istio-system.svc.cluster.local
+#   subsets:
+#     - name: fixer-se
+# ---
+# apiVersion: networking.istio.io/v1alpha3
+# kind: VirtualService
+# metadata:
+#   name: direct-fixer-through-egress-gateway
+# spec:
+#   hosts:
+#     - data.fixer.io
+#   gateways:
+#     - istio-egressgateway
+#     - mesh
+#   http:
+#     - match:
+#         - gateways:
+#             - mesh
+#           port: 80
+#       route:
+#         - destination:
+#             host: istio-egressgateway.istio-system.svc.cluster.local
+#             subset: fixer-se
+#             port:
+#               number: 80
+#           weight: 100
+#     - match:
+#         - gateways:
+#             - istio-egressgateway
+#           port: 80
+#       route:
+#         - destination:
+#             host: data.fixer.io
+#             port:
+#               number: 80
+#           weight: 100

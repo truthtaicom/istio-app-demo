@@ -1,28 +1,28 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: products
-  labels:
-    app: products
-spec:
-  type: NodePort
-  ports:
-    - port: 3000
-      protocol: TCP
-      name: http
-  selector:
-    app: products
----
-apiVersion: networking.istio.io/v1alpha3
-kind: DestinationRule
-metadata:
-  name: products-destination
-spec:
-  host: products
-  subsets:
-  - name: v1
-    labels:
-      version: v1
-  - name: v2
-    labels:
-      version: v2
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: products
+#   labels:
+#     app: products
+# spec:
+#   type: NodePort
+#   ports:
+#     - port: 3000
+#       protocol: TCP
+#       name: http
+#   selector:
+#     app: products
+# ---
+# apiVersion: networking.istio.io/v1alpha3
+# kind: DestinationRule
+# metadata:
+#   name: products-destination
+# spec:
+#   host: products
+#   subsets:
+#   - name: v1
+#     labels:
+#       version: v1
+#   - name: v2
+#     labels:
+#       version: v2

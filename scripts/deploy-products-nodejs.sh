@@ -25,12 +25,21 @@ function setup() {
   kubectl apply -f deployment.yaml
   kubectl apply -f istio.yaml
 
-  _out Build v2 Docker Image
+  _out Build products_v2
   cd ${root_folder}/services/api/products_v2
   docker build -f Dockerfile -t  products:2 .
 
-  _out Deploy v2 to Docker Desktop
+  _out Deploy products_v2
   cd ${root_folder}/services/api/products_v2/deployment
+  kubectl apply -f deployment.yaml
+  kubectl apply -f istio.yaml
+
+  _out Build products-mongo
+  cd ${root_folder}/services/api/products-mongo
+  docker build -f Dockerfile -t products-mongo:1 .
+
+  _out Deploy products-mongo
+  cd ${root_folder}/services/api/products-mongo/deployment
   kubectl apply -f deployment.yaml
   kubectl apply -f istio.yaml
   

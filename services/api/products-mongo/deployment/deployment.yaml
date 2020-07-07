@@ -1,0 +1,36 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: products-mongo-deployment
+  labels:
+    app: products-mongo
+spec:
+  selector:
+    matchLabels:
+      app: products-mongo
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: products-mongo
+    spec:
+      containers:
+        - image: products-mongo:1
+          name: products-mongo
+          env:
+            - name: MONGO_USER
+              value: ecomshop
+            - name: MONGO_PASS
+              value: L721YI4JQfV5iAuj
+            - name: MONGO_HOST
+              value: clusterecommerceshop1-4uifp.gcp.mongodb.net
+              # value: mongo-db-host
+            - name: MONGO_DB
+              value: ecomshop_db
+          ports:
+            - containerPort: 3000
+              name: products-mongo
+      restartPolicy: Always
+---
+

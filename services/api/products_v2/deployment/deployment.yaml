@@ -1,30 +1,30 @@
-apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
-kind: Deployment
-metadata:
-  name: products-deployment-v2
-  labels:
-    app: products
-    version: v2
-spec:
-  selector:
-    matchLabels:
-      app: products
-      version: v2
-  strategy:
-    type: Recreate
-  template:
-    metadata:
-      labels:
-        app: products
-        version: v2
-    spec:
-      containers:
-        - image: products:2
-          name: products
-          env:
-          ports:
-            - containerPort: 3000
-              name: products
-      restartPolicy: Always
----
+# apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+# kind: Deployment
+# metadata:
+#   name: products-deployment-v2
+#   labels:
+#     app: products
+#     version: v2
+# spec:
+#   selector:
+#     matchLabels:
+#       app: products
+#       version: v2
+#   strategy:
+#     type: Recreate
+#   template:
+#     metadata:
+#       labels:
+#         app: products
+#         version: v2
+#     spec:
+#       containers:
+#         - image: products:2
+#           name: products
+#           env:
+#           ports:
+#             - containerPort: 3000
+#               name: products
+#       restartPolicy: Always
+# ---
 

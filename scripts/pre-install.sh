@@ -11,9 +11,17 @@ function _out() {
 
 function setup() {
   
-  _out Installing
-  istioctl install --set values.global.istioNamespace=istio-system --set values.gateways.istio-ingressgateway.enabled=true --set values.gateways.istio-egressgateway.enabled=true --set values.kiali.enabled=true --set addonComponents.grafana.enabled=true
+  _out 🔥 Installing
+  istioctl install \
+  --set values.global.istioNamespace=istio-system \
+  --set values.gateways.istio-ingressgateway.enabled=true \
+  --set values.gateways.istio-egressgateway.enabled=true \
+  --set values.kiali.enabled=true \
+  --set addonComponents.grafana.enabled=true \
+  --set values.tracing.enabled=true \
+  --set values.prometheus.enabled=true \
+  --set meshConfig.accessLogFile="/dev/stdout"
 }
 
-_out Pre-Installing some application
+_out ✅ DONE: Pre-Installing some application
 setup

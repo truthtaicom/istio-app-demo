@@ -1,0 +1,32 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: currency-deployment
+  labels:
+    app: currency
+    version: v1
+spec:
+  selector:
+    matchLabels:
+      app: currency
+      version: v1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: currency
+        version: v1
+    spec:
+      containers:
+        - image: currency:1
+          name: currency
+          env:
+            - name: FIXER_API_KEY
+              value: cde665bcf4f7f214e9447bef25921af0
+          ports:
+            - containerPort: 3000
+              name: currency
+      restartPolicy: Always
+---
+

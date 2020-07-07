@@ -1,0 +1,31 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: mongo-db-host-se
+spec:
+  hosts:
+  - clusterecommerceshop1-4uifp.gcp.mongodb.net
+  addresses:
+  - 34.84.177.213/32
+  ports:
+  - number: 27017
+    name: tcp
+    protocol: TCP
+  location: MESH_EXTERNAL
+  resolution: STATIC
+  endpoints:
+  - address: 34.84.177.213
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: mongo-db-host-vs
+spec:
+  hosts:
+    - clusterecommerceshop1-4uifp.gcp.mongodb.net
+  http:
+    - route:
+        - destination:
+            host: clusterecommerceshop1-4uifp.gcp.mongodb.net
+          weight: 100
+---

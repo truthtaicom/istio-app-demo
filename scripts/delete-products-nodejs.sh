@@ -19,11 +19,18 @@ function setup() {
   cd ${root_folder}/services
   kubectl delete -f services.yaml --ignore-not-found
 
+  _out Deleting products
   cd ${root_folder}/services/api/products/deployment
   kubectl delete -f deployment.yaml --ignore-not-found
   kubectl delete -f istio.yaml --ignore-not-found
 
+  _out Deleting products_v2
   cd ${root_folder}/services/api/products_v2/deployment
+  kubectl delete -f deployment.yaml --ignore-not-found
+  kubectl delete -f istio.yaml --ignore-not-found
+
+  _out Deleting products-mongo
+  cd ${root_folder}/services/api/products-mongo/deployment
   kubectl delete -f deployment.yaml --ignore-not-found
   kubectl delete -f istio.yaml --ignore-not-found
 
